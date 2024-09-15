@@ -5,6 +5,7 @@
 import yfinance as yf
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 def get_closing(ticker):
     stock = yf.Ticker(ticker)
@@ -27,6 +28,12 @@ def get_dates(ticker):
         closing_dates.append(date.strftime('%m-%d'))
 
     return closing_dates
+
+try:
+    # Create our charts folder
+    Path("charts").mkdir()
+except FileExistsError:
+    pass
 
 my_tickers = ["MSFT", "AAPL", "GOOG", "TSLA", "NTDOY"]
 
