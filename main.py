@@ -1,20 +1,24 @@
 ### INF601 - Advanced Programming in Python
 ### Damian Rios
 ### Mini Project 1
+
 import pprint
 import yfinance as yf
+import numpy as np
 
-mytickers = ["MSFT", "AAPL", "GOOG", "TSLA", "NTDOY"]
+def get_closing(ticker):
+    stock = yf.Ticker(ticker)
+    hist = stock.history(period="5d")
 
-mydata = {}
+    closing_list = []
 
-mytickers.sort()
+    for price in hist['Close']:
+        closing_list.append(round(price, 2))
 
-for ticker in mytickers:
-    result = yf.Ticker(ticker)
-    mydata[ticker] = {'ticker': ticker,
-                      'dayHigh': result.info['dayHigh']
-                      }
-    #print(f"Ticker: {ticker} \tDaily High: {result.info['dayHigh']}")
+    return closing_list
 
-pprint.pprint(mydata)
+my_tickers = ["MSFT", "AAPL", "GOOG", "TSLA", "NTDOY"]
+
+for ticker in my_tickers:
+    closing_prices = get_closing(ticker)
+    print(f"Ticker: {ticker} \tClosing Price: {closing_prices}")
