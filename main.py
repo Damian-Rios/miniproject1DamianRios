@@ -60,5 +60,9 @@ for ticker in my_tickers:
     # Rotate x-axis labels for better readability
     #plt.xticks(rotation=45)
 
+    # Save plots as png
+    save_file = "charts/" + ticker + ".png"
+    plt.savefig(save_file)
+
     # Display the graph
     plt.show()
