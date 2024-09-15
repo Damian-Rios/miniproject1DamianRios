@@ -2,30 +2,29 @@
 ### Damian Rios
 ### Mini Project 1
 
-import pprint
 import yfinance as yf
 import numpy as np
 import matplotlib.pyplot as plt
 
 def get_closing(ticker):
     stock = yf.Ticker(ticker)
-    hist = stock.history(period="5d")
+    hist = stock.history(period="1mo")
 
     closing_list = []
 
-    for price in hist['Close']:
+    for price in hist['Close'][-10:]:
         closing_list.append(round(price, 2))
 
     return closing_list
 
 def get_dates(ticker):
     stock = yf.Ticker(ticker)
-    hist = stock.history(period="5d")
+    hist = stock.history(period="1mo")
 
     closing_dates = []
 
-    for date in hist.index:
-        closing_dates.append(date.strftime('%Y-%m-%d'))
+    for date in hist.index[-10:]:
+        closing_dates.append(date.strftime('%m-%d'))
 
     return closing_dates
 
@@ -36,14 +35,12 @@ for ticker in my_tickers:
     closing_prices = np.array(get_closing(ticker))
 
     print(f"Ticker: {ticker}")
-    print("Dates:\t\tClosing Prices:")
+    print("Dates(2024):\tClosing Prices:")
 
     for i in range(len(closing_dates)):
-        print(f"{closing_dates[i]}\t{closing_prices[i]}")
+        print(f"{closing_dates[i]}\t\t\t{closing_prices[i]}")
 
     print()
-
-    plt.figure()
 
     # plots the graph
     plt.plot(closing_dates, closing_prices)
@@ -56,9 +53,12 @@ for ticker in my_tickers:
     plt.ylim(low_price, high_price)
 
     # set our labels for the graph
-    plt.xlabel("Date")
+    plt.xlabel("Date (2024)")
     plt.ylabel("Closing Price")
     plt.title(f"Closing Prices for {ticker}")
+
+    # Rotate x-axis labels for better readability
+    #plt.xticks(rotation=45)
 
     # Display the graph
     plt.show()
