@@ -17,24 +17,10 @@ This project will be using the packages NumPy and Matplotlib in order to create 
 pip install -r requirements.txt
 ```
 
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
-
 ### Executing program
-
-* How to run the program
-* Step-by-step bullets
+In a terminal window, please type the following:
 ```
-code blocks for commands
-```
-
-## Help
-
-Any advice for common problems or issues.
-```
-command to run if program contains helper info
+python main.py
 ```
 
 ## Authors
@@ -44,8 +30,6 @@ Damian Rios
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+* [matplotlib](https://matplotlib.org/stable/tutorials/pyplot.html)
+* [yfinance](https://pypi.org/project/yfinance/)
+* [NumPy](https://numpy.org/doc/stable/user/whatisnumpy.html)

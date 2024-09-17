@@ -7,24 +7,30 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
+# function to get closing prices of last 10 days
 def get_closing(ticker):
     stock = yf.Ticker(ticker)
+    # have to use 1 month period
     hist = stock.history(period="1mo")
 
     closing_list = []
 
+    # -10 to get last 10 days of the month
     for price in hist['Close'][-10:]:
         closing_list.append(round(price, 2))
 
     return closing_list
 
+# function to get dates of last 10 days
 def get_dates(ticker):
     stock = yf.Ticker(ticker)
     hist = stock.history(period="1mo")
 
     closing_dates = []
 
+    # -10 gets last 10 days of month
     for date in hist.index[-10:]:
+        # formatting dates
         closing_dates.append(date.strftime('%m-%d'))
 
     return closing_dates
@@ -37,6 +43,7 @@ except FileExistsError:
 
 my_tickers = ["MSFT", "AAPL", "GOOG", "TSLA", "NTDOY"]
 
+# loop to print data and make plots from data
 for ticker in my_tickers:
     closing_dates = get_dates(ticker)
     closing_prices = np.array(get_closing(ticker))
