@@ -10,7 +10,7 @@ from pathlib import Path
 # function to get closing prices of last 10 days
 def get_closing(ticker):
     stock = yf.Ticker(ticker)
-    # have to use 1 month period
+    # have to use 1-month period
     hist = stock.history(period="1mo")
 
     closing_list = []
@@ -56,12 +56,9 @@ for ticker in my_tickers:
 
     print()
 
-    # plots the graph
-    plt.plot(closing_dates, closing_prices)
-
     # Get our min and max for y
-    low_price = min(closing_prices)
-    high_price = max(closing_prices)
+    low_price = closing_prices.min() - (closing_prices.min()*0.05)
+    high_price = closing_prices.max() + (closing_prices.max()*0.05)
 
     # set our yaxis min and max
     plt.ylim(low_price, high_price)
@@ -71,8 +68,8 @@ for ticker in my_tickers:
     plt.ylabel("Closing Price")
     plt.title(f"Closing Prices for {ticker}")
 
-    # Rotate x-axis labels for better readability
-    #plt.xticks(rotation=45)
+    # plots the graph
+    plt.plot(closing_dates, closing_prices)
 
     # Save plots as png
     save_file = "charts/" + ticker + ".png"

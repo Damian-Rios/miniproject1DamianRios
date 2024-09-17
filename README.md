@@ -23,6 +23,10 @@ In a terminal window, please type the following:
 python main.py
 ```
 
+### Output
+
+This should create 5 graphs in charts/ for each of the five stocks.
+
 ## Authors
 
 Damian Rios
